@@ -1,103 +1,131 @@
 document.addEventListener("DOMContentLoaded", function () {
     function generateInputs() {
-        let nameInput = document.getElementById("name");
-        let jumlahPilihanInput = document.getElementById("jumlahPilihan");
-        let generateButton = document.getElementById("generateButton");
-        let container = document.getElementById("pilihanContainer");
+        const nameInput = document.getElementById("name");
+        const jumlahPilihanInput = document.getElementById("jumlahPilihan");
+        const generateButton = document.getElementById("generateButton");
+        const container = document.getElementById("pilihanContainer");
 
-        // Nonaktifkan input utama dan ubah tampilannya
         nameInput.disabled = true;
         jumlahPilihanInput.disabled = true;
         generateButton.disabled = true;
 
-        // Ubah warna setelah dikunci
-        nameInput.style.backgroundColor = "#d3d3d3";
-        jumlahPilihanInput.style.backgroundColor = "#d3d3d3";
-        generateButton.style.backgroundColor = "#b0b0b0"; // Ubah warna tombol OK jadi abu-abu
+        nameInput.style.backgroundColor = "#fff0f7";
+        jumlahPilihanInput.style.backgroundColor = "#fff0f7";
+        generateButton.style.backgroundColor = "#ffc1d9";
 
-        let jumlahPilihan = parseInt(jumlahPilihanInput.value);
-        container.innerHTML = ""; // Bersihkan kontainer sebelumnya
-        container.classList.remove("hidden"); // Tampilkan kontainer
+        const jumlahPilihan = parseInt(jumlahPilihanInput.value);
+        container.innerHTML = "";
+        container.classList.remove("hidden");
 
-        let formBox = document.createElement("div");
-    
+        container.style.backgroundColor = "#ffe6f0";
+        container.style.padding = "20px";
+        container.style.borderRadius = "12px";
+        container.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.08)";
+        container.style.color = "#c2185b";
+
+        const formBox = document.createElement("div");
+
         for (let i = 1; i <= jumlahPilihan; i++) {
-            let inputBox = document.createElement("div");
+            const inputBox = document.createElement("div");
             inputBox.style.margin = "5px 0";
 
-            let label = document.createElement("label");
+            const label = document.createElement("label");
             label.innerText = `Pilihan ${i} : `;
-            label.style.color = "#808080"; // Ubah teks menjadi abu-abu seperti di gambar
+            label.style.color = "#c2185b";
+            label.style.fontWeight = "600";
 
-            let input = document.createElement("input");
+            const input = document.createElement("input");
             input.type = "text";
             input.placeholder = `Teks Pilihan ${i}`;
             input.id = `pilihan${i}`;
-            input.style.border = "1px solid black";
+            input.style.border = "1px solid #ffaad4";
+            input.style.backgroundColor = "#fff0f7";
+            input.style.borderRadius = "6px";
+            input.style.padding = "5px";
 
             inputBox.appendChild(label);
             inputBox.appendChild(input);
             formBox.appendChild(inputBox);
         }
-    
-        let submitButton = document.createElement("button");
+
+        const submitButton = document.createElement("button");
         submitButton.innerText = "OK";
         submitButton.style.marginTop = "10px";
+        submitButton.style.backgroundColor = "#ff6fa7";
+        submitButton.style.borderRadius = "6px";
+        submitButton.style.padding = "10px";
+        submitButton.style.fontWeight = "bold";
         submitButton.onclick = function () {
             disableInputs(jumlahPilihan);
+            submitButton.disabled = true;
+            submitButton.style.backgroundColor = "#ffc1d9";
+            container.style.backgroundColor = "#fff0f7";
             generateSelection();
         };
 
         formBox.appendChild(submitButton);
         container.appendChild(formBox);
     }
-    
+
     function disableInputs(jumlahPilihan) {
         for (let i = 1; i <= jumlahPilihan; i++) {
-            let input = document.getElementById(`pilihan${i}`);
+            const input = document.getElementById(`pilihan${i}`);
             if (input) {
-                input.disabled = true; // Matikan input
-                input.style.backgroundColor = "#d3d3d3"; // Ubah warna ke abu-abu
+                input.disabled = true;
             }
         }
     }
 
     function generateSelection() {
-        let jumlahPilihan = parseInt(document.getElementById("jumlahPilihan").value);
-        let selectionContainer = document.getElementById("selectionContainer");
-        selectionContainer.innerHTML = ""; // Bersihkan kontainer sebelumnya
-        selectionContainer.classList.remove("hidden"); // Tampilkan container
+        const jumlahPilihan = parseInt(document.getElementById("jumlahPilihan").value);
+        const selectionContainer = document.getElementById("selectionContainer");
+        selectionContainer.innerHTML = "";
+        selectionContainer.classList.remove("hidden");
 
-        let selectionBox = document.createElement("div");
-    
-        let label = document.createElement("p");
+        selectionContainer.style.backgroundColor = "#ffe6f0";
+        selectionContainer.style.padding = "20px";
+        selectionContainer.style.borderRadius = "12px";
+        selectionContainer.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.08)";
+        selectionContainer.style.color = "#c2185b";
+
+        const selectionBox = document.createElement("div");
+
+        const label = document.createElement("p");
         label.innerText = "Pilih salah satu:";
+        label.style.fontWeight = "600";
         selectionBox.appendChild(label);
-    
+
         for (let i = 1; i <= jumlahPilihan; i++) {
-            let pilihanInput = document.getElementById("pilihan" + i);
-            let pilihanText = pilihanInput ? pilihanInput.value.trim() : "";
+            const pilihanInput = document.getElementById("pilihan" + i);
+            const pilihanText = pilihanInput ? pilihanInput.value.trim() : "";
 
             if (pilihanText === "") continue;
 
-            let radioBox = document.createElement("div");
+            const radioBox = document.createElement("div");
             radioBox.style.margin = "5px 0";
-    
-            let radio = document.createElement("input");
+
+            const radio = document.createElement("input");
             radio.type = "radio";
             radio.name = "pilihan";
             radio.value = pilihanText;
-    
+
             radioBox.appendChild(radio);
             radioBox.appendChild(document.createTextNode(" " + pilihanText));
             selectionBox.appendChild(radioBox);
         }
-    
-        let finalSubmit = document.createElement("button");
+
+        const finalSubmit = document.createElement("button");
         finalSubmit.innerText = "OK";
         finalSubmit.style.marginTop = "10px";
+        finalSubmit.style.backgroundColor = "#ff6fa7";
+        finalSubmit.style.borderRadius = "6px";
+        finalSubmit.style.padding = "10px";
+        finalSubmit.style.fontWeight = "bold";
         finalSubmit.onclick = function () {
             disableSelection();
+            finalSubmit.disabled = true;
+            finalSubmit.style.backgroundColor = "#ffc1d9";
+            selectionContainer.style.backgroundColor = "#fff0f7";
             showFinalSelection();
         };
 
@@ -106,42 +134,48 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function disableSelection() {
-        let radios = document.querySelectorAll('input[name="pilihan"]');
+        const radios = document.querySelectorAll('input[name="pilihan"]');
         radios.forEach(radio => {
-            radio.disabled = true; // Matikan semua radio button
+            radio.disabled = true;
         });
 
-        let buttons = document.querySelectorAll("button");
+        const buttons = document.querySelectorAll("#selectionContainer button");
         buttons.forEach(button => {
             button.disabled = true;
-            button.style.backgroundColor = "#b0b0b0"; // Ubah warna tombol ke abu-abu
+            button.style.backgroundColor = "#ffc1d9";
         });
     }
-    
-    function showFinalSelection() {
-        let name = document.getElementById("name").value;
-        let jumlahPilihan = parseInt(document.getElementById("jumlahPilihan").value);
-        let selectedOption = document.querySelector('input[name="pilihan"]:checked');
-        let chosenText = selectedOption ? selectedOption.value : "<Teks Pilihan>";
 
-        let pilihanTexts = [];
+    function showFinalSelection() {
+        const name = document.getElementById("name").value;
+        const jumlahPilihan = parseInt(document.getElementById("jumlahPilihan").value);
+        const selectedOption = document.querySelector('input[name="pilihan"]:checked');
+        const chosenText = selectedOption ? selectedOption.value : "<Teks Pilihan>";
+
+        const pilihanTexts = [];
         for (let i = 1; i <= jumlahPilihan; i++) {
-            let pilihanInput = document.getElementById("pilihan" + i);
+            const pilihanInput = document.getElementById("pilihan" + i);
             if (pilihanInput) {
                 pilihanTexts.push(pilihanInput.value);
             }
         }
 
-        let resultContainer = document.getElementById("resultContainer");
-        resultContainer.innerHTML = ""; 
-        resultContainer.classList.remove("hidden"); 
+        const resultContainer = document.getElementById("resultContainer");
+        resultContainer.innerHTML = "";
+        resultContainer.classList.remove("hidden");
 
-        let resultBox = document.createElement("div");
+        resultContainer.style.backgroundColor = "#fff0f7";
+        resultContainer.style.padding = "20px";
+        resultContainer.style.borderRadius = "12px";
+        resultContainer.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.08)";
+        resultContainer.style.color = "#c2185b";
+
+        const resultBox = document.createElement("div");
         resultBox.innerHTML = `Hallo, nama saya ${name}, saya mempunyai sejumlah ${jumlahPilihan} pilihan yaitu ${pilihanTexts.join(", ")}, dan saya memilih ${chosenText}.`;
         resultBox.style.padding = "10px";
-        resultBox.style.border = "2px solid black";
+        resultBox.style.border = "2px solid #ffaad4";
         resultBox.style.marginTop = "10px";
-        resultBox.style.backgroundColor = "#d3d3d3"; // Ubah hasil menjadi abu-abu
+        resultBox.style.backgroundColor = "#fff0f7";
 
         resultContainer.appendChild(resultBox);
     }
