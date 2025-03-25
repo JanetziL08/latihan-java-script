@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+
     function generateInputs() {
         const nameInput = document.getElementById("name");
         const jumlahPilihanInput = document.getElementById("jumlahPilihan");
@@ -179,6 +179,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
         resultContainer.appendChild(resultBox);
     }
-
-    document.getElementById("generateButton").addEventListener("click", generateInputs);
-});
