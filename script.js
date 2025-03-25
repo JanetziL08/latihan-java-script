@@ -1,5 +1,4 @@
-
-    function generateInputs() {
+function generateInputs() {
         const nameInput = document.getElementById("name");
         const jumlahPilihanInput = document.getElementById("jumlahPilihan");
         const generateButton = document.getElementById("generateButton");
